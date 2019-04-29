@@ -78,7 +78,7 @@ public class Sample14FlipboardView extends View {
         canvas.drawBitmap(bitmap, x, y, paint);
         canvas.restore();
 
-        // 第二遍绘制：下半部分
+//         第二遍绘制：下半部分
         canvas.save();
 
         if (degree < 90) {

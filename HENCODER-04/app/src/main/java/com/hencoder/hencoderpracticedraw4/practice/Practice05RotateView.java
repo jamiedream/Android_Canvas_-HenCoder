@@ -38,7 +38,17 @@ public class Practice05RotateView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
+        int width = bitmap.getWidth();
+        int height = bitmap.getHeight();
+        //逆時針180
+        canvas.save();
+        canvas.rotate(-180, point1.x + width / 2, point1.y + height / 2);
         canvas.drawBitmap(bitmap, point1.x, point1.y, paint);
+        canvas.restore();
+        //順時針45
+        canvas.save();
+        canvas.rotate(45, point2.x + width / 2, point2.y + height / 2);
         canvas.drawBitmap(bitmap, point2.x, point2.y, paint);
+        canvas.restore();
     }
 }
