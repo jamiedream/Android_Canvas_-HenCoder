@@ -1,18 +1,24 @@
 package com.hencoder.hencoderpracticedraw5.practice;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
+import android.util.Log;
 
 import com.hencoder.hencoderpracticedraw5.R;
 
 public class Practice01AfterOnDrawView extends AppCompatImageView {
+
+    Bitmap bitmap;
     Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
     public Practice01AfterOnDrawView(Context context) {
@@ -28,10 +34,13 @@ public class Practice01AfterOnDrawView extends AppCompatImageView {
     }
 
     {
+
+        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.batman);
         paint.setColor(Color.parseColor("#FFC107"));
         paint.setTextSize(28);
     }
 
+    Point point = new Point(360, 200);
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -39,6 +48,14 @@ public class Practice01AfterOnDrawView extends AppCompatImageView {
         // 在 super.onDraw() 的下方插入绘制代码，让绘制内容盖住原主体内容
         // 由于这期的重点是绘制代码的位置而不是绘制代码本身，所以直接给出绘制代码，你只要解除注释就好
         // 爽吧？
+
+        canvas.drawBitmap(bitmap, point.x, point.y, paint);
+        int bw = bitmap.getWidth();
+        int bh = bitmap.getHeight();
+
+        canvas.save();
+        canvas.drawText(bw + " x "+ bh, point.x, point.y + 30, paint);
+        canvas.restore();
 
         /*Drawable drawable = getDrawable();
         if (drawable != null) {
