@@ -65,8 +65,7 @@ public class Practice15Flipboard extends View {
         animator2.setInterpolator(new LinearInterpolator());
 
         animatorSet = new AnimatorSet();
-        animatorSet.playSequentially(animator, animator1, animator2);
-//        animatorSet.playSequentially(animator1, animator, animator2);
+        animatorSet.playSequentially(animator1, animator, animator2);
         animatorSet.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
@@ -136,22 +135,23 @@ public class Practice15Flipboard extends View {
         camera.save();
         canvas.translate(centerX, centerY);
         canvas.rotate(-degree);
-        canvas.clipRect(-centerX, -centerY, 0, centerY);
+        canvas.clipRect(-centerX, -centerY, 0, centerY);//左半圖
         canvas.rotate(degree);
-        camera.rotateX(degreeY2);
+        camera.rotateX(degreeY2);//x axis 三維旋轉
         camera.applyToCanvas(canvas);
         canvas.translate(-centerX, -centerY);
         canvas.drawBitmap(bitmap, x, y, paint);
         camera.restore();
         canvas.restore();
 
+        //動
         canvas.save();
         camera.save();
         canvas.translate(centerX, centerY);
         canvas.rotate(-degree);
-        camera.rotateY(degreeY);
+        camera.rotateY(degreeY);//y axis 三維旋轉
         camera.applyToCanvas(canvas);
-        canvas.clipRect(0, -centerY, centerX, centerY);
+        canvas.clipRect(0, -centerY, centerX, centerY);//右半圖
         canvas.rotate(degree);
         canvas.translate(-centerX, -centerY);
         canvas.drawBitmap(bitmap, x, y, paint);
