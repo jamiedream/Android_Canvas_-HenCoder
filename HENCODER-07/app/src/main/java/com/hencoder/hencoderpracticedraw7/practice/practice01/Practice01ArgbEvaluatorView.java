@@ -42,6 +42,6 @@ public class Practice01ArgbEvaluatorView extends View {
         int height = getHeight();
 
         paint.setColor(color);
-        canvas.drawCircle(width / 2, height / 2, width / 6, paint);
+        canvas.drawCircle(width / 2f, height / 2f, width / 6f, paint);
     }
 }
