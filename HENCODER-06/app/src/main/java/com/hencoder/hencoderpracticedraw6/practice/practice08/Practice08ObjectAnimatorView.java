@@ -20,6 +20,15 @@ public class Practice08ObjectAnimatorView extends View {
     // TODO 为 progress 添加 getter 和 setter 方法（setter 方法记得加 invalidate()）
     float progress = 0;
 
+    private Float getProgress(){
+        return progress;
+    }
+
+    private void setProgress(float set){
+        progress = set;
+        invalidate();
+    }
+
     public Practice08ObjectAnimatorView(Context context) {
         super(context);
     }
@@ -41,8 +50,8 @@ public class Practice08ObjectAnimatorView extends View {
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        float centerX = getWidth() / 2;
-        float centerY = getHeight() / 2;
+        float centerX = getWidth() / 2f;
+        float centerY = getHeight() / 2f;
 
         paint.setColor(Color.parseColor("#E91E63"));
         paint.setStyle(Paint.Style.STROKE);

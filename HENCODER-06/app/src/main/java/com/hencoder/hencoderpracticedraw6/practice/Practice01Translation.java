@@ -19,8 +19,18 @@ import static android.os.Build.VERSION.SDK_INT;
 import static com.hencoder.hencoderpracticedraw6.Utils.dpToPixel;
 
 public class Practice01Translation extends RelativeLayout {
+
     Button animateBt;
     ImageView imageView;
+
+    State state = State.OR;
+
+
+    public enum State{
+
+        OR, FX, BX, FY, BY, FZ, BZ;
+
+    }
 
     public Practice01Translation(Context context) {
         super(context);
@@ -43,13 +53,45 @@ public class Practice01Translation extends RelativeLayout {
         if (SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
             // 给音乐图标加上合适的阴影
             imageView.setOutlineProvider(new MusicOutlineProvider());
-        }
-
-        animateBt.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(final View v) {
-                // TODO 在这里处理点击事件，通过 View.animate().translationX/Y/Z() 来让 View 平移
             }
+
+        animateBt.setOnClickListener(
+                new OnClickListener() {
+                     @Override
+                     public void onClick(final View v) {
+                        // TODO 在这里处理点击事件，通过 View.animate().translationX/Y/Z() 来让 View 平移
+
+                         switch (state){
+                             case OR:
+                                 state = State.FX;
+                                 imageView.setTranslationX(150);
+                                 break;
+                             case FX:
+                                 state = State.BX;
+                                 imageView.setTranslationX(0);
+                                 break;
+                             case BX:
+                                 state = State.FY;
+                                 imageView.setTranslationY(150);
+                                 break;
+                             case FY:
+                                 state = State.BY;
+                                 imageView.setTranslationY(0);
+                                 break;
+                             case BY:
+                                 state = State.FZ;
+                                 imageView.setTranslationZ(15);
+                                 break;
+                             case FZ:
+                                 state = State.BZ;
+                                 imageView.setTranslationX(0);
+                                 break;
+                             case BZ:
+                                 state = State.OR;
+                                 break;
+                         }
+
+                    }
         });
     }
 
